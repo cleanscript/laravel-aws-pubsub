@@ -2,12 +2,14 @@
 
 namespace PodPoint\AwsPubSub\Tests\Pub\Broadcasting\Broadcasters;
 
+use PHPUnit\Framework\Attributes\Test;
 use PodPoint\AwsPubSub\EventServiceProvider;
 use PodPoint\AwsPubSub\Pub\Broadcasting\Broadcasters\EventBridgeBroadcaster;
 use PodPoint\AwsPubSub\Tests\TestCase;
 
 class EventBridgeBroadcasterTest extends TestCase
 {
+    #[Test]
     /** @test */
     public function it_can_instantiate_the_broadcaster()
     {
@@ -23,6 +25,7 @@ class EventBridgeBroadcasterTest extends TestCase
         $this->assertInstanceOf(EventBridgeBroadcaster::class, $broadcaster);
     }
 
+    #[Test]
     /** @test */
     public function it_supports_optional_aws_credentials()
     {
@@ -36,6 +39,7 @@ class EventBridgeBroadcasterTest extends TestCase
         $this->assertInstanceOf(EventBridgeBroadcaster::class, $broadcaster);
     }
 
+    #[Test]
     /** @test */
     public function it_supports_null_aws_credentials()
     {

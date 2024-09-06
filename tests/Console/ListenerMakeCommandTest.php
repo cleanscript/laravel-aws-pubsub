@@ -4,6 +4,7 @@ namespace PodPoint\AwsPubSub\Tests\Console;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
+use PHPUnit\Framework\Attributes\Test;
 use PodPoint\AwsPubSub\Tests\TestCase;
 
 class ListenerMakeCommandTest extends TestCase
@@ -22,6 +23,7 @@ class ListenerMakeCommandTest extends TestCase
         $this->cleanup();
     }
 
+    #[Test]
     /** @test */
     public function it_can_generate_pubsub_event_listeners()
     {
@@ -35,6 +37,7 @@ class ListenerMakeCommandTest extends TestCase
         $this->assertFileExists(app_path('Listeners/PubSub/SomeListener.php'));
     }
 
+    #[Test]
     /** @test */
     public function it_cannot_generate_pubsub_event_listeners_which_already_exist()
     {

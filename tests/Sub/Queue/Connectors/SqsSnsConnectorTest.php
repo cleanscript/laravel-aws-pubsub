@@ -2,12 +2,14 @@
 
 namespace PodPoint\AwsPubSub\Tests\Sub\Queue\Connectors;
 
+use PHPUnit\Framework\Attributes\Test;
 use PodPoint\AwsPubSub\Sub\Queue\Connectors\SqsSnsConnector;
 use PodPoint\AwsPubSub\Sub\Queue\SqsSnsQueue;
 use PodPoint\AwsPubSub\Tests\TestCase;
 
 class SqsSnsConnectorTest extends TestCase
 {
+    #[Test]
     /** @test */
     public function it_can_instantiate_the_connector_and_connect_to_the_queue()
     {
@@ -23,6 +25,7 @@ class SqsSnsConnectorTest extends TestCase
         $this->assertInstanceOf(SqsSnsQueue::class, $queue);
     }
 
+    #[Test]
     /** @test */
     public function it_can_use_a_queue_prefix()
     {
@@ -38,6 +41,7 @@ class SqsSnsConnectorTest extends TestCase
         $this->assertEquals('https://sqs.eu-west-1.amazonaws.com/13245/default', $queue->getQueue(null));
     }
 
+    #[Test]
     /** @test */
     public function it_can_use_a_queue_suffix()
     {
@@ -54,6 +58,7 @@ class SqsSnsConnectorTest extends TestCase
         $this->assertEquals('https://sqs.eu-west-1.amazonaws.com/13245/default-testing', $queue->getQueue(null));
     }
 
+    #[Test]
     /** @test */
     public function it_supports_optional_aws_credentials()
     {
@@ -67,6 +72,7 @@ class SqsSnsConnectorTest extends TestCase
         $this->assertEquals('https://sqs.eu-west-1.amazonaws.com/13245/default', $queue->getQueue(null));
     }
 
+    #[Test]
     /** @test */
     public function it_supports_null_aws_credentials()
     {

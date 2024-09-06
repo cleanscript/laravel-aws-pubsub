@@ -4,6 +4,7 @@ namespace PodPoint\AwsPubSub\Tests\Pub;
 
 use Mockery as m;
 use Mockery\MockInterface;
+use PHPUnit\Framework\Attributes\Test;
 use PodPoint\AwsPubSub\Tests\Pub\Concerns\InteractsWithSns;
 use PodPoint\AwsPubSub\Tests\Pub\TestClasses\Models\User;
 use PodPoint\AwsPubSub\Tests\Pub\TestClasses\Models\UserWithBroadcastingEvents;
@@ -18,6 +19,7 @@ class ModelEventsTest extends TestCase
 {
     use InteractsWithSns;
 
+    #[Test]
     /** @test */
     public function it_broadcasts_model_event()
     {
@@ -38,6 +40,7 @@ class ModelEventsTest extends TestCase
         ]);
     }
 
+    #[Test]
     /** @test */
     public function it_does_not_broadcast_model_events_without_trait()
     {
@@ -52,6 +55,7 @@ class ModelEventsTest extends TestCase
         ]);
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_model_event_with_custom_payload()
     {
@@ -74,6 +78,7 @@ class ModelEventsTest extends TestCase
         ]);
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_model_event_with_specified_event()
     {
@@ -98,6 +103,7 @@ class ModelEventsTest extends TestCase
         ]);
     }
 
+    #[Test]
     /** @test */
     public function it_does_not_broadcast_model_event_without_specified_event()
     {
@@ -112,6 +118,7 @@ class ModelEventsTest extends TestCase
         ])->delete();
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_model_event_with_specified_event_and_custom_payload()
     {
@@ -138,6 +145,7 @@ class ModelEventsTest extends TestCase
         ]);
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_model_events_to_multiple_channels()
     {
@@ -158,6 +166,7 @@ class ModelEventsTest extends TestCase
         ]);
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_model_event_name_as_subject()
     {
@@ -176,6 +185,7 @@ class ModelEventsTest extends TestCase
         ]);
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_model_event_name_as_subject_if_specified()
     {

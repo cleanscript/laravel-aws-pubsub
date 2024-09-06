@@ -3,10 +3,13 @@
 namespace PodPoint\AwsPubSub\Tests;
 
 use Illuminate\Support\Facades\Event;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PodPoint\AwsPubSub\EventServiceProvider;
 
 class EventServiceProviderTest extends TestCase
 {
+    #[Test]
     /** @test */
     public function it_can_prepare_configuration_credentials()
     {
@@ -27,6 +30,7 @@ class EventServiceProviderTest extends TestCase
         ], $config);
     }
 
+    #[Test]
     /** @test */
     public function it_can_prepare_configuration_credentials_with_a_token()
     {
@@ -50,6 +54,7 @@ class EventServiceProviderTest extends TestCase
         ], $config);
     }
 
+    #[Test]
     /** @test */
     public function it_can_make_sure_some_aws_credentials_are_provided_before_preparing_the_credentials()
     {
@@ -61,53 +66,53 @@ class EventServiceProviderTest extends TestCase
         $this->assertArrayNotHasKey('credentials', $config);
     }
 
-    public function invalidCredentialsDataProvider()
+    public static function invalidCredentialsDataProvider()
     {
         return [
             'key_is_empty' => [
-                'creds' => [
+                [
                     'key' => '',
                     'secret' => 'some_secret',
                 ],
             ],
             'secret_is_empty' => [
-                'creds' => [
+                [
                     'key' => 'some_key',
                     'secret' => '',
                 ],
             ],
             'key_and_secret_are_empty' => [
-                'creds' => [
+                [
                     'key' => '',
                     'secret' => '',
                 ],
             ],
             'key_is_null' => [
-                'creds' => [
+                [
                     'key' => null,
                     'secret' => 'some_secret',
                 ],
             ],
             'secret_is_null' => [
-                'creds' => [
+                [
                     'key' => 'some_key',
                     'secret' => null,
                 ],
             ],
             'key_and_secret_are_null' => [
-                'creds' => [
+                [
                     'key' => null,
                     'secret' => null,
                 ],
             ],
             'key_is_empty_and_secret_is_null' => [
-                'creds' => [
+                [
                     'key' => '',
                     'secret' => null,
                 ],
             ],
             'key_is_null_and_secret_is_empty' => [
-                'creds' => [
+                [
                     'key' => null,
                     'secret' => '',
                 ],
@@ -115,11 +120,10 @@ class EventServiceProviderTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider invalidCredentialsDataProvider
-     */
+    #[Test]
+    /** @test */
+    #[DataProvider('invalidCredentialsDataProvider')]
+    /** @dataProvider invalidCredentialsDataProvider */
     public function it_can_make_sure_some_aws_credentials_are_provided_and_valid(array $invalidCredentials)
     {
         $config = EventServiceProvider::prepareConfigurationCredentials(array_merge([
@@ -130,9 +134,8 @@ class EventServiceProviderTest extends TestCase
         $this->assertArrayNotHasKey('credentials', $config);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
+    /** @test */
     public function it_can_register_listeners_when_listen_array_is_populated()
     {
         $this->app->register(TestPubSubEventServiceProvider::class);

@@ -4,6 +4,7 @@ namespace PodPoint\AwsPubSub\Tests\Pub\BasicEvents;
 
 use Mockery as m;
 use Mockery\MockInterface;
+use PHPUnit\Framework\Attributes\Test;
 use PodPoint\AwsPubSub\Tests\Pub\Concerns\InteractsWithSns;
 use PodPoint\AwsPubSub\Tests\Pub\TestClasses\Events\UserRetrieved;
 use PodPoint\AwsPubSub\Tests\Pub\TestClasses\Events\UserRetrievedWithCustomName;
@@ -17,6 +18,7 @@ class SnsTest extends TestCase
 {
     use InteractsWithSns;
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event()
     {
@@ -40,6 +42,7 @@ class SnsTest extends TestCase
         ])));
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event_with_action()
     {
@@ -62,6 +65,7 @@ class SnsTest extends TestCase
         ])));
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event_with_action_and_custom_payload()
     {
@@ -84,6 +88,7 @@ class SnsTest extends TestCase
         ])));
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event_to_multiple_channels()
     {
@@ -105,6 +110,7 @@ class SnsTest extends TestCase
         ])));
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event_name_as_subject()
     {
@@ -126,6 +132,7 @@ class SnsTest extends TestCase
         ])));
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event_name_as_subject_if_specified()
     {
@@ -147,6 +154,7 @@ class SnsTest extends TestCase
         ])));
     }
 
+    #[Test]
     /** @test */
     public function it_can_use_an_arn_prefix_and_suffix()
     {

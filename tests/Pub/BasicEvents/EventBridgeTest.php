@@ -6,6 +6,7 @@ use Aws\Result;
 use Illuminate\Support\Facades\Log;
 use Mockery as m;
 use Mockery\MockInterface;
+use PHPUnit\Framework\Attributes\Test;
 use PodPoint\AwsPubSub\Tests\Pub\Concerns\InteractsWithEventBridge;
 use PodPoint\AwsPubSub\Tests\Pub\TestClasses\Events\UserRetrieved;
 use PodPoint\AwsPubSub\Tests\Pub\TestClasses\Events\UserRetrievedWithCustomName;
@@ -18,6 +19,7 @@ class EventBridgeTest extends TestCase
 {
     use InteractsWithEventBridge;
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event_with_the_event_name_as_the_detail_type_and_serialised_event_as_the_detail()
     {
@@ -38,6 +40,7 @@ class EventBridgeTest extends TestCase
         event($event);
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event_with_action()
     {
@@ -56,6 +59,7 @@ class EventBridgeTest extends TestCase
         event($event);
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event_with_action_and_custom_payload()
     {
@@ -77,6 +81,7 @@ class EventBridgeTest extends TestCase
         event($event);
     }
 
+    #[Test]
     /** @test */
     public function it_broadcasts_basic_event_to_multiple_channels_as_buses()
     {
@@ -101,6 +106,7 @@ class EventBridgeTest extends TestCase
         event($event);
     }
 
+    #[Test]
     /** @test */
     public function it_can_use_a_source()
     {
@@ -125,6 +131,7 @@ class EventBridgeTest extends TestCase
         event($event);
     }
 
+    #[Test]
     /** @test */
     public function it_logs_errors_when_events_fail_to_send()
     {
